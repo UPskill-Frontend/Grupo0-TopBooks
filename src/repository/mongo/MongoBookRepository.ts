@@ -13,7 +13,8 @@ export class MongoBookRepository implements IBookRepository {
         return [];
     };
 
-    findOrderByPublishDate = async () => {
-        return [];
+    findOrderedByPublishDate = async () => {
+        const bookList = await BookSchema.find().sort({ publishDate: -1 }).limit(10);
+        return bookList.map((book) => BookMapper.toDomain(book));
     };
 }

@@ -18,6 +18,7 @@ export class BookService implements IBookService {
     };
 
     getNewest = async () => {
-        return [];
+        const bookList = await this.bookRepository.findOrderedByPublishDate();
+        return bookList.map((book) => BookMapper.toDTO(book));
     };
 }
