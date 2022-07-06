@@ -3,7 +3,7 @@ import IBookPersistence from '../dataSchema/IBookPersistence';
 import { Book } from '../domain/Book';
 
 export class BookMapper {
-    public static toBookDTO(book: Book): IBookDTO {
+    public static toDTO(book: Book): IBookDTO {
         return {
             title: book.title,
             isbn: book.isbn,
@@ -16,7 +16,7 @@ export class BookMapper {
         };
     }
 
-    public static toBookPersistence(book: Book): IBookPersistence {
+    public static toPersistence(book: Book): IBookPersistence {
         return {
             title: book.title,
             isbn: book.isbn,
