@@ -14,7 +14,8 @@ export class BookService implements IBookService {
     };
 
     getTopTenSales = async () => {
-        return [];
+        const booksList = await this.bookRepository.findOrderedBySales();
+        return booksList.map((book) => BookMapper.toDTO(book));
     };
 
     getNewest = async () => {

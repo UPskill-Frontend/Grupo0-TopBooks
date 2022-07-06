@@ -9,8 +9,9 @@ export class MongoBookRepository implements IBookRepository {
         return BookMapper.toDomain(newBookPers);
     };
 
-    findOrderBySales = async () => {
-        return [];
+    findOrderedBySales = async () => {
+        const booksList = await BookSchema.find().sort({ sales: -1 }).limit(10);
+        return booksList.map((book) => BookMapper.toDomain(book));
     };
 
     findOrderByPublishDate = async () => {
