@@ -15,7 +15,8 @@ export class BookController implements IBookController {
     };
 
     getTopTenSales = async (req: Request, res: Response, next: NextFunction) => {
-        res.status(200).send();
+        const salesList = await this.bookService.getTopTenSales();
+        res.status(200).send(salesList);
     };
 
     getNewest = async (req: Request, res: Response, next: NextFunction) => {
