@@ -9,7 +9,9 @@ export class BookController implements IBookController {
     constructor(@inject('IBookService') private bookService: IBookService) {}
 
     post = async (req: Request, res: Response, next: NextFunction) => {
-        res.status(201).send();
+        const bookDto: IBookDTO = { ...req.body, publishDate: new Date(req.body.publishDate) };
+        const newBook = await this.bookService.createBook(bookDto);
+        res.status(201).send(newBook);
     };
 
     getTopTenSales = async (req: Request, res: Response, next: NextFunction) => {
