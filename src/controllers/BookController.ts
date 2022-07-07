@@ -20,6 +20,6 @@ export class BookController implements IBookController {
     };
 
     getNewest = async (req: Request, res: Response, next: NextFunction) => {
-        res.status(200).send();
+        res.status(200).send(await this.bookService.getNewest());
     };
 }
