@@ -3,7 +3,6 @@ import IBookService from './interfaces/IBookService';
 import { BookMapper } from '../mappers/BookMapper';
 import IBookRepository from '../repository/interfaces/IBookRepository';
 import { MongoBookRepository } from '../repository/mongo/MongoBookRepository';
-import { Book } from '../domain/Book';
 
 export class BookService implements IBookService {
     constructor(private bookRepository: IBookRepository = new MongoBookRepository()) {}
@@ -19,7 +18,7 @@ export class BookService implements IBookService {
     };
 
     getNewest = async () => {
-        const bookList = await this.bookRepository.findOrderedByPublishDate();
-        return bookList.map((book) => BookMapper.toDTO(book));
+        const nBooks = await this.bookRepository.findOrderByPublishDate();
+        return nBooks.map((book) => BookMapper.toDTO(book));
     };
 }

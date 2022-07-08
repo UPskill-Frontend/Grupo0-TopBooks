@@ -14,8 +14,8 @@ export class MongoBookRepository implements IBookRepository {
         return booksList.map((book) => BookMapper.toDomain(book));
     };
 
-    findOrderedByPublishDate = async () => {
-        const bookList = await BookSchema.find().sort({ publishDate: -1 }).limit(10);
-        return bookList.map((book) => BookMapper.toDomain(book));
+    findOrderByPublishDate = async () => {
+        const booksList = await BookSchema.find().sort({ publishDate: -1 }).limit(10);
+        return booksList.map((book) => BookMapper.toDomain(book));
     };
 }
